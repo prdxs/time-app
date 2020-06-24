@@ -6,6 +6,9 @@ const fetch = axios.create({
 
 export const getTime = () => fetch.get('/time');
 
+export const getMetrics = () => fetch.get('/metrics');
+
 export default {
   getTime,
+  getMetrics,
 };
