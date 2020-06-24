@@ -29,6 +29,7 @@ const styleFn: Interpolation<{ theme: ITheme }> = ({ theme }) => {
     return css`
       ${allCss}
       ${groupCss}
+      ${theme.typography.toString()}
     `;
   }, css``);
 

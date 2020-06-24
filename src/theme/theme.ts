@@ -1,7 +1,8 @@
 import { pathOr } from 'ramda';
 
 import { ITheme } from './typings';
-import breakpoints, { MOBILE_MEDIA_QUERY } from './breakpoints';
+import breakpoints from './breakpoints';
+import typography from './typography';
 
 const defaultTheme: ITheme = {
   name: 'default-theme',
@@ -56,30 +57,8 @@ const defaultTheme: ITheme = {
     '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
   ],
 
-  // Typography.js configuration
-  typography: {
-    googleFonts: [
-      {
-        name: 'Source Sans Pro',
-        styles: ['900'],
-      },
-      {
-        name: 'Roboto',
-        styles: ['300', '400', '700'],
-      },
-    ],
-    baseFontSize: '18px',
-    headerFontFamily: ['Source Sans Pro', 'sans-serif'],
-    bodyFontFamily: ['Roboto', 'sans-serif'],
-    scaleRatio: 2.4,
-    overrideStyles: () => ({
-      [MOBILE_MEDIA_QUERY]: {
-        html: {
-          fontSize: '16px',
-        },
-      },
-    }),
-  },
+  // Typography.js instance
+  typography,
 
   // Util functions
   get fns() {

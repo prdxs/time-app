@@ -1,5 +1,6 @@
 // import original module declarations
 import 'styled-components';
+
 import { ITheme } from './src/theme/typings';
 
 // and extend them!

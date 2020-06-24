@@ -1,4 +1,4 @@
-import { TypographyOptions } from 'typography';
+import Typography from 'typography';
 
 export interface IBreakpointsArray extends Array<string> {
   sm: string;
@@ -14,7 +14,7 @@ export interface ITheme {
     [key: string]: { [key: string]: string };
   };
   shadows: Array<string>;
-  typography: TypographyOptions;
+  typography: Typography;
   fns: {
     getColor(color: string): string;
   };
