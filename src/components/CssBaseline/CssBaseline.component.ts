@@ -7,6 +7,7 @@ import {
 } from 'styled-components';
 import '@csstools/normalize.css';
 import 'sanitize.css';
+import 'react-placeholder/lib/reactPlaceholder.css';
 
 import { ITheme } from 'src/theme/typings';
 

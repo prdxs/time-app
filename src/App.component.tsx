@@ -18,9 +18,6 @@ const App: React.FC<IAppProps> = ({ className }) => (
 
 const StyledApp = styled(App)`
   &.App-root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
   }
 `;
