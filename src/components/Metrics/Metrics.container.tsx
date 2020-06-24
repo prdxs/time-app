@@ -22,6 +22,12 @@ const MetricsContainer: React.FC<Omit<IMetricsProps, 'loading'>> = (props) => {
     };
 
     fetchMetrics();
+
+    const handle = setInterval(() => fetchMetrics(), 30000);
+
+    return () => {
+      clearInterval(handle);
+    };
   }, []);
 
   return (

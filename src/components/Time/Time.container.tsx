@@ -26,6 +26,12 @@ const TimeContainer: React.FC<Omit<ITimeProps, 'loading' | 'time'>> = (
     };
 
     fetchTime();
+
+    const handle = setInterval(() => fetchTime(), 30000);
+
+    return () => {
+      clearInterval(handle);
+    };
   }, []);
 
   useEffect(() => {
