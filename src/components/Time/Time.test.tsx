@@ -7,12 +7,16 @@ import Time from './Time.component';
 
 describe('Time component', () => {
   it('should render proper time', () => {
-    const { getByTestId } = render(<Time loading={false} time="00:00:00" />);
+    const { getByTestId } = render(
+      <Time loading={false} serverTime={0} pastTime="00:00:00" />
+    );
     const el = getByTestId('Time-root');
-    const timeEl = getByTestId('Time-time');
+    const timeEl = getByTestId('Time-serverTime');
+    const diffEl = getByTestId('Time-difference');
 
     expect(el).toBeInTheDocument();
-    expect(timeEl).toHaveTextContent('00:00:00');
+    expect(timeEl).toHaveTextContent('0');
+    expect(diffEl).toHaveTextContent('00:00:00');
   });
 
   it('should render loading placeholder when loading', () => {

@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { ITimeProps } from './Time.typings';
 import Time from './Time.component';
 import { getTime } from 'src/api';
-import { formatTime, incrementTime } from 'src/utils';
+import { incrementTime } from 'src/utils';
 
-const TimeContainer: React.FC<Omit<ITimeProps, 'loading' | 'time'>> = (
-  props
-) => {
+const TimeContainer: React.FC<Omit<
+  ITimeProps,
+  'loading' | 'pastTime' | 'serverTime'
+>> = (props) => {
   const [loading, setLoading] = useState(false);
-  const [time, setTime] = useState('00:00:00');
+  const [lastServerTime, setLastServerTime] = useState(0);
+  const [pastTime, setPastTime] = useState('00:00:00');
 
   useEffect(() => {
     const fetchTime = async () => {
@@ -19,7 +21,8 @@ const TimeContainer: React.FC<Omit<ITimeProps, 'loading' | 'time'>> = (
         const { data } = await getTime();
         const { epoch } = data.data;
 
-        setTime(formatTime(epoch));
+        setLastServerTime(epoch);
+        setPastTime('00:00:00');
       } finally {
         setLoading(false);
       }
@@ -37,16 +40,23 @@ const TimeContainer: React.FC<Omit<ITimeProps, 'loading' | 'time'>> = (
   useEffect(() => {
     if (!loading) {
       const handle = setInterval(() => {
-        setTime(incrementTime(time));
+        setPastTime(incrementTime(pastTime));
       }, 1000);
 
       return () => {
         clearInterval(handle);
       };
     }
-  }, [loading, time]);
+  }, [lastServerTime, loading, pastTime]);
 
-  return <Time loading={loading} time={time} {...props} />;
+  return (
+    <Time
+      loading={loading}
+      serverTime={lastServerTime}
+      pastTime={pastTime}
+      {...props}
+    />
+  );
 };
 
 export default TimeContainer;
